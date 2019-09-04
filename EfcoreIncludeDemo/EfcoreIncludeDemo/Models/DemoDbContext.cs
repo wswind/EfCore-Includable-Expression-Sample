@@ -14,9 +14,10 @@ namespace EfcoreIncludeDemo.Models
 
         }
 
-        public DbSet<Model1> Model1s { get; set; }
-        public DbSet<Model2> Model2s { get; set; }
-        public DbSet<Model3> Model3s { get; set; }
+        public DbSet<Model1> Model1S { get; set; }
+        public DbSet<Model2> Model2S { get; set; }
+        public DbSet<Model3> Model3S { get; set; }
+        public DbSet<Model4> Model4S { get; set; }
 
     }
 }

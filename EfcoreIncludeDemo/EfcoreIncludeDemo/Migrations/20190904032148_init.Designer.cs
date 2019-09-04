@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EfcoreIncludeDemo.Migrations
 {
     [DbContext(typeof(DemoDbContext))]
-    [Migration("20190903131826_init")]
+    [Migration("20190904032148_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,11 @@ namespace EfcoreIncludeDemo.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DataModel1");
+                    b.Property<string>("Data");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Model1s");
+                    b.ToTable("Model1S");
                 });
 
             modelBuilder.Entity("EfcoreIncludeDemo.Models.Model2", b =>
@@ -40,7 +40,7 @@ namespace EfcoreIncludeDemo.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DataModel2");
+                    b.Property<string>("Data");
 
                     b.Property<int?>("Model1Id");
 
@@ -52,7 +52,7 @@ namespace EfcoreIncludeDemo.Migrations
 
                     b.HasIndex("Model3Id");
 
-                    b.ToTable("Model2s");
+                    b.ToTable("Model2S");
                 });
 
             modelBuilder.Entity("EfcoreIncludeDemo.Models.Model3", b =>
@@ -61,11 +61,28 @@ namespace EfcoreIncludeDemo.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DataModel3");
+                    b.Property<string>("Data");
+
+                    b.Property<int?>("Model4Id");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Model3s");
+                    b.HasIndex("Model4Id");
+
+                    b.ToTable("Model3S");
+                });
+
+            modelBuilder.Entity("EfcoreIncludeDemo.Models.Model4", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Data");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Model4S");
                 });
 
             modelBuilder.Entity("EfcoreIncludeDemo.Models.Model2", b =>
@@ -77,6 +94,13 @@ namespace EfcoreIncludeDemo.Migrations
                     b.HasOne("EfcoreIncludeDemo.Models.Model3", "Model3")
                         .WithMany()
                         .HasForeignKey("Model3Id");
+                });
+
+            modelBuilder.Entity("EfcoreIncludeDemo.Models.Model3", b =>
+                {
+                    b.HasOne("EfcoreIncludeDemo.Models.Model4", "Model4")
+                        .WithMany()
+                        .HasForeignKey("Model4Id");
                 });
 #pragma warning restore 612, 618
         }

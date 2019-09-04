@@ -25,7 +25,7 @@ namespace EfcoreIncludeDemo.Controllers
 
         public IActionResult Index()
         {
-            var query = demoDbContext.Model1s.IncludeMultiple(x => x.Include(y => y.Model2).ThenInclude(z => z.Model3));
+            var query = demoDbContext.Model1S.IncludeMultiple(x => x.Include(y => y.Model2).ThenInclude(z => z.Model3).ThenInclude(m=>m.Model4));
             var list = query.ToList();
             return Ok("debug here");
         }

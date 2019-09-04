@@ -8,79 +8,107 @@ namespace EfcoreIncludeDemo.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Model1s",
+                name: "Model1S",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DataModel1 = table.Column<string>(nullable: true)
+                    Data = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Model1s", x => x.Id);
+                    table.PrimaryKey("PK_Model1S", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Model3s",
+                name: "Model4S",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DataModel3 = table.Column<string>(nullable: true)
+                    Data = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Model3s", x => x.Id);
+                    table.PrimaryKey("PK_Model4S", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Model2s",
+                name: "Model3S",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    DataModel2 = table.Column<string>(nullable: true),
+                    Data = table.Column<string>(nullable: true),
+                    Model4Id = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Model3S", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Model3S_Model4S_Model4Id",
+                        column: x => x.Model4Id,
+                        principalTable: "Model4S",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Model2S",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Data = table.Column<string>(nullable: true),
                     Model3Id = table.Column<int>(nullable: true),
                     Model1Id = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Model2s", x => x.Id);
+                    table.PrimaryKey("PK_Model2S", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Model2s_Model1s_Model1Id",
+                        name: "FK_Model2S_Model1S_Model1Id",
                         column: x => x.Model1Id,
-                        principalTable: "Model1s",
+                        principalTable: "Model1S",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Model2s_Model3s_Model3Id",
+                        name: "FK_Model2S_Model3S_Model3Id",
                         column: x => x.Model3Id,
-                        principalTable: "Model3s",
+                        principalTable: "Model3S",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Model2s_Model1Id",
-                table: "Model2s",
+                name: "IX_Model2S_Model1Id",
+                table: "Model2S",
                 column: "Model1Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Model2s_Model3Id",
-                table: "Model2s",
+                name: "IX_Model2S_Model3Id",
+                table: "Model2S",
                 column: "Model3Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Model3S_Model4Id",
+                table: "Model3S",
+                column: "Model4Id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Model2s");
+                name: "Model2S");
 
             migrationBuilder.DropTable(
-                name: "Model1s");
+                name: "Model1S");
 
             migrationBuilder.DropTable(
-                name: "Model3s");
+                name: "Model3S");
+
+            migrationBuilder.DropTable(
+                name: "Model4S");
         }
     }
 }
