@@ -25,26 +25,15 @@ namespace EfcoreIncludeDemo.Controllers
 
         public IActionResult Index()
         {
-            var lst = GetAllWithIncludes(x => x.Include(y => y.Model2).ThenInclude(z => z.Model3));
+            var query = demoDbContext.Model1s.IncludeMultiple(x => x.Include(y => y.Model2).ThenInclude(z => z.Model3));
+            var list = query.ToList();
             return Ok("debug here");
         }
 
-        private List<Model1> GetAllWithIncludes(Func<IIncludable<Model1>, IIncludable> includes)
-        {
-            return demoDbContext.Model1s
-                .IncludeMultiple(includes)
-                .ToList();
-        }
 
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }
