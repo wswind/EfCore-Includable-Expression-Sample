@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EfcoreIncludeDemo.Application
+namespace EfcoreIncludeDemo.ForIncludes
 {
     public interface IIncludable { }
 
