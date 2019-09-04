@@ -18,7 +18,7 @@ namespace EfcoreIncludeDemo.ForIncludes
             if (includes == null)
                 return query;
 
-            var includable = (Includable<T>)includes(new Includable<T>(query));
+            var includable = (IIncludable<T>)includes(new Includable<T>(query));
             return includable.Input;
         }
 
