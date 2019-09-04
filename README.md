@@ -1,6 +1,6 @@
 # EfCoreIncludeThenIncludeExpressionsParams
 use efcore Include Theninclude for expression params
- 
+
 ## learn form
 https://stackoverflow.com/questions/42904414/multiple-includes-in-ef-core
 
@@ -22,3 +22,4 @@ public class Model1
 
 to fix it I changed the code a little bit.
 
+![1567569588670](.\pic.png)
