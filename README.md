@@ -22,4 +22,4 @@ public class Model1
 
 to fix it I changed the code a little bit.
 
-![1567569588670](.\pic.png)
+![pic](./pic.png)
